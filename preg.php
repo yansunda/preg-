@@ -8,7 +8,7 @@
  * Email : yansunda@myhexin.com
  *       : 819035995@qq.com
  * 学习链接地址：①https://v.youku.com/v_show/id_XMTc5MjQ3ODA4.html?refer=seo_operation.liuxiao.liux_00003310_3000_nUF3ai_19042900
- *               ②
+ *               ②https://v.youku.com/v_show/id_XMTc5MjQzMTM2.html?spm=a2h0j.11185381.listitem_page1.5!2~A
  * Desc :正则表达式学习
  * 开始和结尾用定界符，我们一般用“/“声明为定界符，没有特殊说明就用”/“
  * 正则表达式主要的组成部分
@@ -64,9 +64,24 @@
  *                  '/abc/i'  abc不区分大小写
  *              ②x忽略空白
  *              ③U匹配最近的字符串
+ *    二：PHP正则表达式详解
+ *       ① preg_match($preg, $str, $arr)//匹配正则表达式，并匹配到第一个元素赋值给$arr
+ *              $preg = '/a\d/';
+ *              $str = 'aa a3j';
+ *              $is_preg = preg_match($preg, $str, $arr);//$arr的值为[a3]，只匹配到第一个元素，不会往后继续匹配了
+ *       ②增加模式单元,可以匹配到以第一个子组
+ *               $preg = '/a(\d)/';
+ *               $str = 'a1 aaj';
+ *               $is_preg = preg_match($preg, $str, $arr);//$arr的值为[a3, 3]
+ *       ③preg_match_all,匹配所有的的元素和子组
+ *              $preg = '/a(\d)/';
+ *              $str = 'a1 a4a8';
+ *              $is_preg = preg_match_all($preg, $str, $arr);//$arr的值为[[a1,a4,a8],[1,4,8]]
+ *
  */
 //$date = '2009-01-01' || '2009/01/01';
-$preg = '/abc/i';
-$str = 'ABC';
-$is_preg = preg_match($preg, $str);
-var_dump($is_preg);die;
+//$preg = '/\d{4}([-/])\d{1,2}([-/])\d{1,2}/';
+$preg = '/\d{4}([-,/])\d{1,2}/';
+$str = '今天是20190628，今天的天气真好';
+$is_preg = preg_match_all($preg, $str, $arr);
+var_dump($is_preg,$arr);die;
