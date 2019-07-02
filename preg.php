@@ -77,11 +77,25 @@
  *              $preg = '/a(\d)/';
  *              $str = 'a1 a4a8';
  *              $is_preg = preg_match_all($preg, $str, $arr);//$arr的值为[[a1,a4,a8],[1,4,8]]
- *
+ *      ④取出一个字符串中所有的年月日，并进行分类
+ *              $preg = '/(\d{4})-(\d{1,2})-(\d{1,2})/';
+ *              $str = '今天是2019-07-1,明天是2019-07-02';
+ *              $is_preg = preg_match_all($preg, $str, $arr);//arr的值为[[2019-07-01,2019-07-02],[2019,2019],[07,07],[1,02]]
+ *     ⑤$date的月、日、am或者pm
+ *              $date = date("Y-m-d H:i a", time());
+ *              $preg = "/\d{4}-(\d{1,2})-(\d{1,2}) \d{1,2}:\d{1,2} ([a,p]m)/";
+ *              $count = preg_match_all($preg, $date, $arr);
+ *              var_dump($date,$count, $arr);die;
+ *     ⑥模式修正符匹配正则
+ *              //匹配html标签
+ *              $html = "<h1>你好</h1><b>hello</br>";
+ *              $preg = "/<.*>/U";//模式修正符：匹配最近的标签，并且重复匹配
+ *              $count = preg_match_all($preg, $html, $arr);
+ *              var_dump($count,$html,$arr);die;
+ *      ⑦preg_grep :返回给定数组元素和正则表达式相匹配的元素组成的数组
+ *              1)匹配一个数组中，第一个是字母，第二个是数字的元素
+ *                 $arr = ['a1','aaa2a','b3','aaa','c0','o9','cbas','a7b'];
+ *                 $preg = "/^[a-z]\d$/i";
+ *                 $get = preg_grep($preg, $arr);//[a1,b3,c0,o9]
  */
-//$date = '2009-01-01' || '2009/01/01';
-//$preg = '/\d{4}([-/])\d{1,2}([-/])\d{1,2}/';
-$preg = '/\d{4}([-,/])\d{1,2}/';
-$str = '今天是20190628，今天的天气真好';
-$is_preg = preg_match_all($preg, $str, $arr);
-var_dump($is_preg,$arr);die;
+ddd
