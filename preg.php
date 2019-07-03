@@ -97,5 +97,18 @@
  *                 $arr = ['a1','aaa2a','b3','aaa','c0','o9','cbas','a7b'];
  *                 $preg = "/^[a-z]\d$/i";
  *                 $get = preg_grep($preg, $arr);//[a1,b3,c0,o9]
+ *      ⑧preg_split：正则表达式对字符串进行拆分
+ *              1)$str  = "today is pragram,day ";
+ *                $preg = "/ |,/s";
+ *                $arr = preg_split($preg, $str);//匹配空格和“，”,结果为['today','is','pragram','day','']
+ *              2)有时可以和array_count_values结合起来使用，用来统计数组中元素出现的次数
+ *              3)preg_split($preg, $str, 2);//最多拆分两个，结果为['today','ispragram,day ']
+ *              4)preg_split($preg, $str, 0, PREG_SPLIT_NO_EMPTY)//返回的数组没有空格，['today','is','pragram','day']
+ *              5)$str  = "today4a1is9ba3pra3gram6,day ";
+ *                $preg = "/a(\d)/";
+ *                $arr = preg_split($preg, $str, 0, PREG_SPLIT_DELIM_CAPTURE);//正则表达式中括号的内容被匹配也会捕获到数组里面,结果为['today4','1','is9b','3','pr','3','gram6,day ']
  */
-ddd
+$str  = "today4a1is9ba3pra3gram6,day ";
+$preg = "/a(\d)/";
+$arr = preg_split($preg, $str, 0, PREG_SPLIT_DELIM_CAPTURE);
+var_dump($arr);
